@@ -23,9 +23,9 @@ public class ComputadorRepositorio {
             return Result.fail("Valor invalido!");
         }
 
-        Computador computador = new Computador(nome, patrimonio, ip);
+        Computador computadores = new Computador(nome, patrimonio, ip);
 
-        return dao.criar(computador);
+        return dao.criar(computadores);
     }
 
     public List<Computador> mostrarTodos(){

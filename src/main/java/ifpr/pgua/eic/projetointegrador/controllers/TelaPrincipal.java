@@ -7,17 +7,17 @@ import javafx.fxml.FXML;
 public class TelaPrincipal extends BaseController {
     
 
-    @FXML
+    /*@FXML
     private void carregarClientes(){
         App.changeScreenRegion("CLIENTES", BorderPaneRegion.CENTER);
-    }
+    }*/
 
     @FXML
     private void carregarProdutos(){
         App.changeScreenRegion("COMPUTADOR", BorderPaneRegion.CENTER);
     }
 
-    @FXML
+    /*@FXML
     private void carregarVendas(){
         App.changeScreenRegion("VENDAS", BorderPaneRegion.CENTER);
     }
@@ -25,7 +25,7 @@ public class TelaPrincipal extends BaseController {
     @FXML
     private void carregarNovaVenda(){
         App.changeScreenRegion("NOVAVENDA", BorderPaneRegion.CENTER);
-    }
+    }*/
 
 
 
