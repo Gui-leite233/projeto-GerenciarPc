@@ -17,12 +17,12 @@ public class TelaPrincipal extends BaseController {
         App.changeScreenRegion("COMPUTADOR", BorderPaneRegion.CENTER);
     }
 
-    /*@FXML
-    private void carregarVendas(){
-        App.changeScreenRegion("VENDAS", BorderPaneRegion.CENTER);
+    @FXML
+    private void carregarTecnicos(){
+        App.changeScreenRegion("TECNICO", BorderPaneRegion.CENTER);
     }
 
-    @FXML
+    /*@FXML
     private void carregarNovaVenda(){
         App.changeScreenRegion("NOVAVENDA", BorderPaneRegion.CENTER);
     }*/

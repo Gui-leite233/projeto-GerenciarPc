@@ -21,10 +21,10 @@
                </Label>
             </children>
          </Pane>
-         <Button prefHeight="40.0" prefWidth="100.0" text="Clientes" />
-         <Button prefHeight="40.0" prefWidth="100.0" text="Produtos" />
-         <Button prefHeight="40.0" prefWidth="100.0" text="Vendas" />
-         <Button prefHeight="40.0" prefWidth="100.0" text="Nova Venda" />
+         <Button prefHeight="40.0" prefWidth="100.0" text="Computadores" />
+         <Button prefHeight="40.0" prefWidth="100.0" text="Tecnico" />
+         <Button prefHeight="40.0" prefWidth="100.0" text="Manutenção" />
+         <Button prefHeight="40.0" prefWidth="100.0" text="Nova manutenção" />
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
