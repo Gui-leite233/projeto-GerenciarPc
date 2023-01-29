@@ -15,7 +15,6 @@ public class Tecnico {
         this.matricula = matricula;
     }
 
-
     public String getNome() {
         return nome;
     }
@@ -24,19 +23,11 @@ public class Tecnico {
         this.nome = nome;
     }
 
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula){
-        this.matricula = matricula;
-    }
-
-    public DatePicker getData_cadastro_funcionario(){
+    public DatePicker getData_cadastro_funcionario() {
         return data_cadastro_funcionario;
     }
 
-    public void setData_cadastro_funcionario(DatePicker data_cadastro_funcionario){
+    public void setData_cadastro_funcionario(DatePicker data_cadastro_funcionario) {
         this.data_cadastro_funcionario = data_cadastro_funcionario;
     }
 
@@ -47,5 +38,15 @@ public class Tecnico {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+
     
 }

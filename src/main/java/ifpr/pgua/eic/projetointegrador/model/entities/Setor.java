@@ -1,6 +1,6 @@
 package ifpr.pgua.eic.projetointegrador.model.entities;
 
-import javafx.scene.control.DatePicker;
+//import javafx.scene.control.DatePicker;
 
 public class Setor {
     private String codigo;
@@ -15,16 +15,18 @@ public class Setor {
         return codigo;
     }
 
-    public void setCodigo(String codigo){
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
-    public String getDescricao(){
+    public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(){
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    
     
 }
