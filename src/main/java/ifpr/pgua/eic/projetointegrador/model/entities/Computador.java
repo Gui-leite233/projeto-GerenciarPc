@@ -9,7 +9,7 @@ public class Computador {
 
 
 
-    public Computador(String patrimonio, String nome, String ip, String ValorMTC) {
+    public Computador(String patrimonio, String nome, String ip, String valorMTC) {
         this.patrimonio = patrimonio;
         this.nome = nome;
         this.ip = ip;

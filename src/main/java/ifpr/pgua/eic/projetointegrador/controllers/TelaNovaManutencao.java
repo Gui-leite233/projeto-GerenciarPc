@@ -84,11 +84,43 @@ public class TelaNovaManutencao extends BaseController implements Initializable{
         tbMtcs.getItems().addAll(Mtcs);
 
         double total=0.0;
-        for(Manutencao mtc:mtcs){
-            total+= Manutencao.getQuantidade()*Mtc.getValorMTC();
+        for(Manutencao mtc:Mtcs){
+            total+= Manutencao.getQuantidade()*mtc.getValorMTC();
         }
     }
 
-
+    private void limparEntradaItem(){
+        cbComputador.getSelectionModel().clearSelection();
+        tfQuantidade.clear();
+    }
     
+    @FXML
+    private void adicionarItem(){
+
+        Computador computador = cbComputador.getSelectionModel().getSelectedItem();
+        String sQuantidade = tfQuantidade.getText();
+
+        double quantidade = 0.0;
+
+        try{
+            quantidade = Double.valueOf(sQuantidade);
+        }catch(NumberFormatException e){
+            showMessage(Result.fail("Quantidade inválida!"));
+        }
+
+        if(quantidade <= 0){
+            showMessage(Result.fail("Quantidade inválida!"));
+        }
+
+        Manutencao mtc = new Manutencao();
+        mtc.setComputador(Computador);
+        mtc.setQuantidade(quantidade);
+        mtc.setValorMTC(Computador.getValorMTC());
+
+        Mtcs.add(mtc);
+
+        atualizar();
+        limparEntradaItem();
+
+    }
 }

@@ -14,7 +14,7 @@ public class ComputadorRepositorio {
         this.dao = dao;
     }
 
-    public Result cadastrar(String nome, String patrimonio, String ip){
+    public Result cadastrar(String nome, String patrimonio, String ip, String valorMTC){
         if(patrimonio.isEmpty() || patrimonio.isBlank() ){
             return Result.fail("Valor do Patrimonio invalido!");
         }
@@ -23,7 +23,7 @@ public class ComputadorRepositorio {
             return Result.fail("Valor invalido!");
         }
 
-        Computador computadores = new Computador(nome, patrimonio, ip);
+        Computador computadores = new Computador(nome, patrimonio, ip, valorMTC);
 
         return dao.criar(computadores);
     }
