@@ -42,8 +42,8 @@ public class TelaNovaManutencao extends BaseController implements Initializable{
     @FXML
     private TableColumn<Manutencao, String> tbcComputador;
 
-    @FXML 
-    private TableColumn<Manutencao, String> tbcValorMTC;
+    //@FXML 
+    //private TableColumn<Manutencao, String> tbcValorMTC;
 
     @FXML
     private TableColumn<Manutencao, String> tbcQuantidade;
@@ -74,9 +74,9 @@ public class TelaNovaManutencao extends BaseController implements Initializable{
 
         tbcComputador.setCellValueFactory(celula -> new SimpleStringProperty(celula.getValue().getComputador().getNome()));
         tbcQuantidade.setCellValueFactory(celula -> new SimpleStringProperty(celula.getValue().getQuantidade()+""));
-        tbcValorMTC.setCellValueFactory(celula -> new SimpleStringProperty(celula.getValue().getComputador().getValorMTC()*celula.getValue().getQuantidade()+""));
+        //tbcValorMTC.setCellValueFactory(celula -> new SimpleStringProperty(celula.getValue().getComputador().getValorMTC()*celula.getValue().getQuantidade()+""));
 
-        tfData.setText(DateTimeFormatter.ofPattern("dd/MM/yyyy  hh.mm".format(LocalDateTime.now())));
+        tfData.setText(DateTimeFormatter.ofPattern("dd/MM/yyyy  hh:mm").format(LocalDateTime.now()));
     }
 
     private void atualizar(){
@@ -84,12 +84,12 @@ public class TelaNovaManutencao extends BaseController implements Initializable{
         tbMtcs.getItems().addAll(Mtcs);
 
         double total=0.0;
-        for(Manutencao mtc:Mtcs){
+        /*for(Manutencao mtc:Mtcs){
             total+= Manutencao.getQuantidade()*mtc.getValorMTC();
-        }
+        }*/
     }
 
-    private void limparEntradaItem(){
+    private void limparEntrada(){
         cbComputador.getSelectionModel().clearSelection();
         tfQuantidade.clear();
     }
@@ -113,14 +113,14 @@ public class TelaNovaManutencao extends BaseController implements Initializable{
         }
 
         Manutencao mtc = new Manutencao();
-        mtc.setComputador(Computador);
+        mtc.setComputador(computador);
         mtc.setQuantidade(quantidade);
-        mtc.setValorMTC(Computador.getValorMTC());
+        //mtc.setValorMTC(Computador.getValorMTC());
 
         Mtcs.add(mtc);
 
         atualizar();
-        limparEntradaItem();
+        limparEntrada();
 
     }
 }
