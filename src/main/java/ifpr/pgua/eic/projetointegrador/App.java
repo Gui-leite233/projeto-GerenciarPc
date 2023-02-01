@@ -9,7 +9,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import ifpr.pgua.eic.projetointegrador.controllers.TelaPrincipal;
+import ifpr.pgua.eic.projetointegrador.controllers.TelaTecnico;
 import ifpr.pgua.eic.projetointegrador.model.FabricaConexoes;
+import ifpr.pgua.eic.projetointegrador.model.daos.TecnicoDAO;
+import ifpr.pgua.eic.projetointegrador.model.repositories.TecnicoRepositorio;
 import ifpr.pgua.eic.projetointegrador.utils.Navigator.BaseAppNavigator;
 import ifpr.pgua.eic.projetointegrador.utils.Navigator.ScreenRegistryFXML;
 
@@ -19,6 +22,9 @@ import ifpr.pgua.eic.projetointegrador.utils.Navigator.ScreenRegistryFXML;
  */
 public class App extends BaseAppNavigator {
 
+    private TecnicoDAO tecnicoDAO;
+    private TecnicoRepositorio tecnicoRepositorio;
+
 
     //DEFINIR A FABRICA DE CONEXÕES, DAOS e REPOSITÓRIOS
 
@@ -26,8 +32,8 @@ public class App extends BaseAppNavigator {
     public void init() throws Exception {
         // TODO Auto-generated method stub
         super.init();
-        
-        //INSTANCIAR FABRICA, DAOS E REPOSITÓRIOS
+        tecnicoDAO = new JDBCTecnicoDAO
+        tecnicoRepositorio = new TecnicoRepositorio(tecnicoDAO);
     
     }
 
@@ -55,7 +61,7 @@ public class App extends BaseAppNavigator {
     public void registrarTelas() {
         registraTela("PRINCIPAL", new ScreenRegistryFXML(getClass(), "fxml/principal.fxml", (o)->new TelaPrincipal()));
         
-        //REGISTRAR AS OUTRAS TELAS
+        registraTela("TECNICO", new ScreenRegistryFXML(getClass(), "fxml/tecnico.fxml", (o)->new TelaTecnico(tecnicoRepositorio)));
 
     }
 

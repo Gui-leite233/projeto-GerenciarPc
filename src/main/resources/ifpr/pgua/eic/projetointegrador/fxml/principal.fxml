@@ -14,17 +14,17 @@
       <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="155.0" spacing="10.0">
          <Pane prefHeight="78.0" prefWidth="135.0">
             <children>
-               <Label layoutX="14.0" layoutY="27.0" text="Vendinha">
+               <Label layoutX="14.0" layoutY="27.0" text="Manutenção">
                   <font>
                      <Font name="System Bold" size="20.0" />
                   </font>
                </Label>
             </children>
          </Pane>
-         <Button prefHeight="40.0" prefWidth="100.0" text="Computadores" />
-         <Button prefHeight="40.0" prefWidth="100.0" text="Tecnico" />
-         <Button prefHeight="40.0" prefWidth="100.0" text="Manutenção" />
-         <Button prefHeight="40.0" prefWidth="100.0" text="Nova manutenção" />
+         <Button  prefHeight="40.0" prefWidth="100.0" text="Computador" />
+         <Button onAction="#carregarTecnico" prefHeight="40.0" prefWidth="100.0" text="Tecnico" />
+         <Button  prefHeight="40.0" prefWidth="100.0" text="Manutenção" />
+         <Button  prefHeight="40.0" prefWidth="100.0" text="Nova Manutenção" />
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>

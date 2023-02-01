@@ -18,7 +18,7 @@ public class TelaPrincipal extends BaseController {
     }
 
     @FXML
-    private void carregarTecnicos(){
+    private void carregarTecnico(){
         App.changeScreenRegion("TECNICO", BorderPaneRegion.CENTER);
     }
 
