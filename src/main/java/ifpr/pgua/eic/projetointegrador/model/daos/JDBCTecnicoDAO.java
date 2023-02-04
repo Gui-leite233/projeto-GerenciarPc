@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
 import ifpr.pgua.eic.projetointegrador.model.FabricaConexoes;
-import ifpr.pgua.eic.projetointegrador.model.entities.Computador;
 import ifpr.pgua.eic.projetointegrador.model.entities.Tecnico;
 import ifpr.pgua.eic.projetointegrador.model.results.Result;
 
@@ -46,15 +46,9 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
             }
         }
         
-        // TODO Auto-generated method stub
-        return null;
+        
     }
 
-    @Override
-    public Result editar(String cpf) {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
     @Override
     public Result remover(String cpf) {
@@ -64,20 +58,54 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
 
     @Override
     public List<Tecnico> listarTodos() {
-        // TODO Auto-generated method stub
-        return null;
+        ArrayList<Tecnico> tecnicos = new ArrayList<>();
+        try{
+
+            Connection con = fabricaConexoes.getConnection();
+
+            PreparedStatement pstm = con.prepareStatement("SELECT * FROM tca_tecnico");
+
+            ResultSet rs = pstm.executeQuery();
+
+            while(rs.next()){
+                String cpf = rs.getString("cpf");
+                String data_cadastro_funcionario = rs.getString("data_cadastro_funcionario");
+                String nome = rs.getString("nome");
+
+                Tecnico tecnico = new Tecnico(cpf, data_cadastro_funcionario, nome);
+
+                tecnicos.add(tecnico);
+            }
+            rs.close();
+            pstm.close();
+            con.close();
+
+        }catch(SQLException e){
+            System.out.println(E.getMessage());
+            return Collections.emptyList();
+        }
+
+        return Collections.unmodifiableList(tecnico);
+
     }
 
     @Override
     public Tecnico buscarPorCpfTecnico(String cpf) {
-        // TODO Auto-generated method stub
-        return null;
+        
     }
 
     @Override
     public Tecnico buscarTecnico(int matricula) {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    public Tecnico atualizar(String cpf, Tecnico tecnico) {
+        try{
+            Connection con = fabricaConexoes.getConnection();
+
+            PreparedStatement pstm = con.prepareStatement("UPDATE tca_tecnico set cpf=?, data_cadastro_tecnico=?, nome=? WHERE id=?");
+        }
     }
 
     
