@@ -26,9 +26,9 @@ public class FabricaConexoes {
 
     public Connection getConnection() throws SQLException{
 
-        String user = Env.get("DB_USER");
-        String password = Env.get("DB_PASSWORD");
-        String url = Env.get("DB_URL");
+        String user = Env.get("info21_leocadio");
+        String password = Env.get("info21_leocadio");
+        String url = Env.get("mysql://wagnerweinert.com.br:3306/info21_leocadio");
 
 
         for(int i=0;i<conexoes.length;i++){
