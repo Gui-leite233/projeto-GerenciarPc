@@ -76,7 +76,7 @@ public class TelaNovaManutencao extends BaseController implements Initializable{
         tbcQuantidade.setCellValueFactory(celula -> new SimpleStringProperty(celula.getValue().getQuantidade()+""));
         tbcValorMTC.setCellValueFactory(celula -> new SimpleStringProperty(celula.getValue().getComputador().getValorMTC()*celula.getValue().getQuantidade()+""));
 
-        tfData.setText(DateTimeFormatter.ofPattern("dd/MM/yyyy  hh.mm".format(LocalDateTime.now())));
+        tfData.setText(DateTimeFormatter.ofPattern("dd/MM/yyyy  hh.mm").format(LocalDateTime.now()));
     }
 
     private void atualizar(){
@@ -85,7 +85,7 @@ public class TelaNovaManutencao extends BaseController implements Initializable{
 
         double total=0.0;
         for(Manutencao mtc:Mtcs){
-            total+= Manutencao.getQuantidade()*mtc.getValorMTC();
+            total += Manutencao.getQuantidade()*mtc.getValorMTC();
         }
     }
 
@@ -113,7 +113,7 @@ public class TelaNovaManutencao extends BaseController implements Initializable{
         }
 
         Manutencao mtc = new Manutencao();
-        mtc.setComputador(Computador);
+        mtc.setComputador(computador);
         mtc.setQuantidade(quantidade);
         mtc.setValorMTC(Computador.getValorMTC());
 
