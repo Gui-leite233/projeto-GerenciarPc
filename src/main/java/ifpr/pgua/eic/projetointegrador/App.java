@@ -11,6 +11,7 @@ import java.io.IOException;
 import ifpr.pgua.eic.projetointegrador.controllers.TelaPrincipal;
 import ifpr.pgua.eic.projetointegrador.controllers.TelaTecnico;
 import ifpr.pgua.eic.projetointegrador.model.FabricaConexoes;
+import ifpr.pgua.eic.projetointegrador.model.daos.JDBCTecnicoDAO;
 import ifpr.pgua.eic.projetointegrador.model.daos.TecnicoDAO;
 import ifpr.pgua.eic.projetointegrador.model.repositories.TecnicoRepositorio;
 import ifpr.pgua.eic.projetointegrador.utils.Navigator.BaseAppNavigator;
@@ -24,6 +25,7 @@ public class App extends BaseAppNavigator {
 
     private TecnicoDAO tecnicoDAO;
     private TecnicoRepositorio tecnicoRepositorio;
+    private FabricaConexoes fabricaConexao = FabricaConexoes.getInstance();
 
 
     //DEFINIR A FABRICA DE CONEXÕES, DAOS e REPOSITÓRIOS
@@ -32,7 +34,7 @@ public class App extends BaseAppNavigator {
     public void init() throws Exception {
         // TODO Auto-generated method stub
         super.init();
-        tecnicoDAO = new JDBCTecnicoDAO
+        tecnicoDAO = new JDBCTecnicoDAO(fabricaConexao);
         tecnicoRepositorio = new TecnicoRepositorio(tecnicoDAO);
     
     }
