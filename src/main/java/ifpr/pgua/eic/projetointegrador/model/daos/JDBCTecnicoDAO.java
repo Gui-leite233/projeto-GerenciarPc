@@ -31,7 +31,7 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
        
             pstm.setString(1, tecnico.getCpf());
             //Descobrir equivalente do setString() para datePicker()!!
-            pstm.setString(2, tecnico.getData_cadastro_funcionario());
+            //pstm.setString(2, tecnico.getData_cadastro_funcionario());
             pstm.setString(3, tecnico.getNome());
 
             pstm.executeUpdate();
