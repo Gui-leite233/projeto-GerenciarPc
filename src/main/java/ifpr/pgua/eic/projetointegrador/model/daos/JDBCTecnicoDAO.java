@@ -88,7 +88,7 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
         }
 
         //List tecnico;
-        return Collections.unmodifiableList(tecnico);
+        return Collections.unmodifiableList(tecnicos);
 
     }
 
