@@ -1,9 +1,7 @@
 package ifpr.pgua.eic.projetointegrador.model.daos;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,6 +10,7 @@ import java.util.List;
 import ifpr.pgua.eic.projetointegrador.model.FabricaConexoes;
 import ifpr.pgua.eic.projetointegrador.model.entities.Tecnico;
 import ifpr.pgua.eic.projetointegrador.model.results.Result;
+import javafx.scene.control.DatePicker;
 
 public class JDBCTecnicoDAO implements TecnicoDAO{
 
@@ -27,12 +26,14 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
 
             Connection con = fabricaConexoes.getConnection();
 
-            PreparedStatement pstm = con.prepareStatement("INSERT INTO tca_tecnico(cpf,data_cadastro_funcionario,nome) VALUES (?,?,?)");
+            PreparedStatement pstm = con.prepareStatement("INSERT INTO tca_tecnico(cpf, dcf, Matricula, nome) VALUES (?,?,?,?)");
        
             pstm.setString(1, tecnico.getCpf());
             //Descobrir equivalente do setString() para datePicker()!!
-            //pstm.setString(2, tecnico.getData_cadastro_funcionario());
-            pstm.setString(3, tecnico.getNome());
+            pstm.setTimestamp(2, Timestamp.valueOf(tecnico.getDataHora()));
+            pstm.setString(3, tecnico.getMatricula());
+            pstm.setString(4, tecnico.getNome());
+            
 
             pstm.executeUpdate();
 
@@ -71,10 +72,11 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
 
             while(rs.next()){
                 String cpf = rs.getString("cpf");
-                String data_cadastro_funcionario = rs.getString("data_cadastro_funcionario");
+                LocalDateTime dcf = rs.getLocalDateTime("data_cadastro_funcionario");
+                String matricula = rs.getString("Matricula");
                 String nome = rs.getString("nome");
 
-                Tecnico tecnico = new Tecnico(cpf, data_cadastro_funcionario, null, nome);
+                Tecnico tecnico = new Tecnico();
 
                 tecnicos.add(tecnico);
             }

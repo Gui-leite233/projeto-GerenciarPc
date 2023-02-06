@@ -75,7 +75,7 @@ public class TelaTecnico implements Initializable{
     @FXML
     private void cadastrar(){
         String nome = tfNome.getText();
-        String Ip = tfCpf.getText();
+        String cpf = tfCpf.getText();
         String Matricula = tfMatricula.getText();
     }
 

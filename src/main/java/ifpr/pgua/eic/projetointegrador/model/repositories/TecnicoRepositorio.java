@@ -1,5 +1,6 @@
 package ifpr.pgua.eic.projetointegrador.model.repositories;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import ifpr.pgua.eic.projetointegrador.model.daos.TecnicoDAO;
@@ -15,7 +16,7 @@ public class TecnicoRepositorio {
         this.dao = dao;
     }
 
-    public Result cadastrar(String nome, String matricula, DatePicker data_cadastro_funcionario, String cpf){
+    public Result cadastrar(String nome, String matricula, LocalDateTime dcf, String cpf){
         if(cpf.isEmpty() || cpf.isBlank() ){
             return Result.fail("Cpf invalido!");
         }
@@ -24,7 +25,7 @@ public class TecnicoRepositorio {
             return Result.fail("Matricula invalida!");
         }
 
-        Tecnico tecnicos = new Tecnico(nome, matricula, data_cadastro_funcionario,cpf);
+        Tecnico tecnicos = new Tecnico(nome, matricula, dcf, cpf);
 
         return dao.criar(tecnicos);
     }
