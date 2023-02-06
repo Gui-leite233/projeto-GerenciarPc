@@ -49,7 +49,7 @@ public class TelaComputador extends BaseController implements Initializable{
     @FXML
     private TableColumn<Computador, String> tbcNome;
 
-    @FXML
+    
     private ComputadorRepositorio repositorio;
 
     public TelaComputador(ComputadorRepositorio repositorio){
