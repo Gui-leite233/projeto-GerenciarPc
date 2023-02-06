@@ -72,13 +72,14 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
 
             while(rs.next()){
                 String cpf = rs.getString("cpf");
-                LocalDateTime dcf = rs.getLocalDateTime("data_cadastro_funcionario");
+                //LocalDateTime dcf = rs.getString("data_cadastro_funcionario");
                 String matricula = rs.getString("Matricula");
                 String nome = rs.getString("nome");
 
-                Tecnico tecnico = new Tecnico();
+                
+                //Tecnico tecnico = new Tecnico(cpf, matricula, dcf, nome);
 
-                tecnicos.add(tecnico);
+                //tecnicos.add(tecnico);
             }
             rs.close();
             pstm.close();
