@@ -12,7 +12,7 @@ public interface TecnicoDAO {
     List<Tecnico> listarTodos();
     Tecnico buscarPorCpfTecnico(String cpf);
     
-    Tecnico buscarTecnico(int matricula);
+    Tecnico buscarTecnico(String matricula);
 
     
 

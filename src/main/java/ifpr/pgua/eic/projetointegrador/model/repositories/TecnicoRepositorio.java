@@ -6,7 +6,7 @@ import java.util.List;
 import ifpr.pgua.eic.projetointegrador.model.daos.TecnicoDAO;
 import ifpr.pgua.eic.projetointegrador.model.entities.Tecnico;
 import ifpr.pgua.eic.projetointegrador.model.results.Result;
-import javafx.scene.control.DatePicker;
+
 
 public class TecnicoRepositorio {
     private List<Tecnico> tecnicos;
@@ -31,6 +31,7 @@ public class TecnicoRepositorio {
     }
 
     public List<Tecnico> mostrarTodos(){
+
         return dao.listarTodos();
     }
 }

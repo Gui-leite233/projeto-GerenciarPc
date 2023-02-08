@@ -1,6 +1,7 @@
 package ifpr.pgua.eic.projetointegrador.controllers;
 
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import ifpr.pgua.eic.projetointegrador.model.entities.Tecnico;
@@ -8,7 +9,7 @@ import ifpr.pgua.eic.projetointegrador.model.repositories.TecnicoRepositorio;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -34,7 +35,7 @@ public class TelaTecnico implements Initializable{
     private TextField tfMatricula;
 
     @FXML
-    private DatePicker dpData_cadastro_funcionario;
+    private LocalDateTime dpData_cadastro_funcionario;
 
     @FXML
     private TableView<Tecnico> tbTecnico;

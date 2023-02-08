@@ -26,7 +26,7 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
 
             Connection con = fabricaConexoes.getConnection();
 
-            PreparedStatement pstm = con.prepareStatement("INSERT INTO tca_tecnico(cpf, dcf, Matricula, nome) VALUES (?,?,?,?)");
+            PreparedStatement pstm = con.prepareStatement("INSERT INTO tca_tecnico(cpf, data_cadastro_funcionario, matricula, nome) VALUES (?,?,?,?)");
        
             pstm.setString(1, tecnico.getCpf());
             //Descobrir equivalente do setString() para datePicker()!!
@@ -61,7 +61,8 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
     public List<Tecnico> listarTodos() {
         
         ArrayList<Tecnico> tecnicos = new ArrayList<>();
-        
+        LocalDateTime now = LocalDateTime.now();
+        Timestamp timestamp = Timestamp.valueOf(now);
         try{
 
             Connection con = fabricaConexoes.getConnection();
@@ -72,18 +73,19 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
 
             while(rs.next()){
                 String cpf = rs.getString("cpf");
-                //LocalDateTime dcf = rs.getString("data_cadastro_funcionario");
+                LocalDateTime dcf = timestamp.toLocalDateTime();
                 String matricula = rs.getString("Matricula");
                 String nome = rs.getString("nome");
 
                 
-                //Tecnico tecnico = new Tecnico(cpf, matricula, dcf, nome);
+                Tecnico tecnico = new Tecnico(cpf, matricula, dcf, nome);
 
-                //tecnicos.add(tecnico);
+                tecnicos.add(tecnico);
             }
             rs.close();
             pstm.close();
             con.close();
+            
 
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -102,7 +104,7 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
     }
 
     @Override
-    public Tecnico buscarTecnico(int matricula) {
+    public Tecnico buscarTecnico(String matricula) {
         // TODO Auto-generated method stub
         return null;
     }

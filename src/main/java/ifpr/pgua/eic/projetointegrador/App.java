@@ -12,9 +12,12 @@ import ifpr.pgua.eic.projetointegrador.controllers.TelaComputador;
 import ifpr.pgua.eic.projetointegrador.controllers.TelaPrincipal;
 import ifpr.pgua.eic.projetointegrador.controllers.TelaTecnico;
 import ifpr.pgua.eic.projetointegrador.model.FabricaConexoes;
+import ifpr.pgua.eic.projetointegrador.model.daos.ComputadorDAO;
 import ifpr.pgua.eic.projetointegrador.model.daos.JDBCTecnicoDAO;
+import ifpr.pgua.eic.projetointegrador.model.daos.SetorDAO;
 import ifpr.pgua.eic.projetointegrador.model.daos.TecnicoDAO;
 import ifpr.pgua.eic.projetointegrador.model.repositories.ComputadorRepositorio;
+import ifpr.pgua.eic.projetointegrador.model.repositories.SetorRepositorio;
 import ifpr.pgua.eic.projetointegrador.model.repositories.TecnicoRepositorio;
 import ifpr.pgua.eic.projetointegrador.utils.Navigator.BaseAppNavigator;
 import ifpr.pgua.eic.projetointegrador.utils.Navigator.ScreenRegistryFXML;
@@ -28,6 +31,9 @@ public class App extends BaseAppNavigator {
     private TecnicoDAO tecnicoDAO;
     private TecnicoRepositorio tecnicoRepositorio;
     private ComputadorRepositorio computadorRepositorio;
+    private ComputadorDAO computadorDAO;
+    private SetorDAO setorDAO;
+    private SetorRepositorio setorRepositorio;
     private FabricaConexoes fabricaConexao = FabricaConexoes.getInstance();
 
 
@@ -39,7 +45,8 @@ public class App extends BaseAppNavigator {
         super.init();
         tecnicoDAO = new JDBCTecnicoDAO(fabricaConexao);
         tecnicoRepositorio = new TecnicoRepositorio(tecnicoDAO);
-    
+        computadorRepositorio = new ComputadorRepositorio(computadorDAO);
+        setorRepositorio = new SetorRepositorio(setorDAO);
     }
 
     @Override
