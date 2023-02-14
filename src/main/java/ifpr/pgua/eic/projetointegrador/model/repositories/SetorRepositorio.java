@@ -5,7 +5,7 @@ import java.util.List;
 import ifpr.pgua.eic.projetointegrador.model.daos.SetorDAO;
 import ifpr.pgua.eic.projetointegrador.model.entities.Setor;
 import ifpr.pgua.eic.projetointegrador.model.results.Result;
-import javafx.scene.control.DatePicker;
+
 
 public class SetorRepositorio {
     private List<Setor> setores;

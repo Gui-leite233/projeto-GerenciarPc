@@ -7,35 +7,34 @@ import java.sql.SQLException;
 import ifpr.pgua.eic.projetointegrador.utils.Env;
 
 public class FabricaConexoes {
-    private static final int MAX_CONEXOES=5;
+    private static final int MAX_CONEXOES = 5;
 
     private static FabricaConexoes instance;
 
     private Connection[] conexoes;
 
-    private FabricaConexoes(){
+    private FabricaConexoes() {
         conexoes = new Connection[MAX_CONEXOES];
     }
 
-    public static FabricaConexoes getInstance(){
-        if(instance == null){
+    public static FabricaConexoes getInstance() {
+        if (instance == null) {
             instance = new FabricaConexoes();
         }
         return instance;
     }
 
-    public Connection getConnection() throws SQLException{
+    public Connection getConnection() throws SQLException {
 
-        String user = Env.get("info21_leocadio");
-        String password = Env.get("info21_leocadio");
-        String url = Env.get("mysql://wagnerweinert.com.br:3306/info21_leocadio");
+        String user = Env.get("DB_USER");
+        String password = Env.get("DB_PASSWORD");
+        String url = Env.get("DB_URL");
 
-
-        for(int i=0;i<conexoes.length;i++){
-            if(conexoes[i]==null || conexoes[i].isClosed()){
-                conexoes[i] = DriverManager.getConnection(url, 
-                                                          user, 
-                                                          password);
+        for (int i = 0; i < conexoes.length; i++) {
+            if (conexoes[i] == null || conexoes[i].isClosed()) {
+                conexoes[i] = DriverManager.getConnection(url,
+                        user,
+                        password);
                 return conexoes[i];
             }
         }

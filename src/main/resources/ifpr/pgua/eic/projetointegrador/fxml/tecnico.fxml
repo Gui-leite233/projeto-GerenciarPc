@@ -50,7 +50,7 @@
       </Pane>
    </top>
    <bottom>
-      <TableView fx:id="tcTecnico" prefHeight="286.0" prefWidth="780.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tbTecnico" prefHeight="286.0" prefWidth="780.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="tbcNome" prefWidth="117.0" text="Nome" />
           <TableColumn fx:id="tbcCpf" prefWidth="172.0" text="Cpf" />

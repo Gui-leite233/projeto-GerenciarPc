@@ -2,7 +2,7 @@ package ifpr.pgua.eic.projetointegrador.model.entities;
 
 import java.time.LocalDateTime;
 
-import javafx.scene.control.DatePicker;
+
 
 public class Tecnico {
     private String nome;
