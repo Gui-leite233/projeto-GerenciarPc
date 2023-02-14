@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import ifpr.pgua.eic.projetointegrador.model.entities.Computador;
 import ifpr.pgua.eic.projetointegrador.model.repositories.ComputadorRepositorio;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -49,6 +50,9 @@ public class TelaComputador extends BaseController implements Initializable{
     @FXML
     private TableColumn<Computador, String> tbcNome;
 
+    @FXML
+    private TableColumn<Computador, String> tbcDataMTC;
+
     
     private ComputadorRepositorio repositorio;
 
@@ -60,9 +64,10 @@ public class TelaComputador extends BaseController implements Initializable{
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        tbcIp.setCellValueFactory(new PropertyValueFactory<>("Ip"));
-        tbcPatrimonio.setCellValueFactory(new PropertyValueFactory<>("Patrimonio"));
-        tbcNome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
+        tbcIp.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getIp()+""));
+        tbcPatrimonio.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getComputador().getNome()));
+        tbcNome.setCellValueFactory(cell -> new PropertyValueFactory<>("Nome"));
+        tbcDataMTC.setCellFactory(cell -> new SimpleStringProperty(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").format(cell.getValue().getDataHora())));
 
         atualizarTabela();
         
@@ -79,6 +84,7 @@ public class TelaComputador extends BaseController implements Initializable{
         String nome = tfNome.getText();
         String Ip = tfIp.getText();
         String Patrimonio = tfPatrimonio.getText();
+
     }
 
     @FXML

@@ -1,10 +1,13 @@
 package ifpr.pgua.eic.projetointegrador.model.entities;
 
+import javafx.scene.control.DatePicker;
+
 public class Computador {
     private String patrimonio;
     private String nome;
     private String ip;
     private String descricao;
+    private DatePicker dataCadastro;
     //private String ValorMTC;
 
 
@@ -15,6 +18,7 @@ public class Computador {
         this.nome = nome;
         this.ip = ip;
         this.descricao = descricao;
+        this.dataCadastro = dataCadastro;
         //this.ValorMTC = ValorMTC;
     }
 
@@ -27,7 +31,7 @@ public class Computador {
     }
 
     public String getNome() {
-        return patrimonio;
+        return nome;
     }
 
     public void setNome(String nome) {
@@ -48,6 +52,14 @@ public class Computador {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public DatePicker setDataCadastro(){
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(DatePicker dataCadastro){
+        this.dataCadastro = dataCadastro;
     }
     
 }

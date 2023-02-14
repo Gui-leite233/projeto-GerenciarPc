@@ -10,7 +10,7 @@ import java.util.List;
 import ifpr.pgua.eic.projetointegrador.model.FabricaConexoes;
 import ifpr.pgua.eic.projetointegrador.model.entities.Tecnico;
 import ifpr.pgua.eic.projetointegrador.model.results.Result;
-import javafx.scene.control.DatePicker;
+
 
 public class JDBCTecnicoDAO implements TecnicoDAO{
 
