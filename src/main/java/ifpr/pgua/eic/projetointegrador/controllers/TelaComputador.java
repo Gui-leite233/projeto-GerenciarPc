@@ -35,6 +35,8 @@ public class TelaComputador extends BaseController implements Initializable{
     @FXML
     private TextField tfPatrimonio;
 
+    
+
     @FXML
     private DatePicker dpDataMT;
 
@@ -49,6 +51,8 @@ public class TelaComputador extends BaseController implements Initializable{
 
     @FXML
     private TableColumn<Computador, String> tbcNome;
+
+    
 
     @FXML
     private TableColumn<Computador, String> tbcDataMTC;
@@ -67,6 +71,7 @@ public class TelaComputador extends BaseController implements Initializable{
         tbcIp.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getIp()+""));
         tbcPatrimonio.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getPatrimonio()));
         tbcNome.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getNome()));
+        //tbcMatricula.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getNome()));
         //tbcDataMTC.setCellFactory(cell -> new SimpleStringProperty(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").format(cell.getValue().getDataHora())));
 
         atualizarTabela();
@@ -84,6 +89,7 @@ public class TelaComputador extends BaseController implements Initializable{
         String nome = tfNome.getText();
         String Ip = tfIp.getText();
         String Patrimonio = tfPatrimonio.getText();
+        //String Matricula = tfMatricula.getText();
 
     }
 
@@ -92,6 +98,7 @@ public class TelaComputador extends BaseController implements Initializable{
         tfNome.clear();
         tfIp.clear();
         tfPatrimonio.clear();
+        //tfMatricula.clear();
     }
 
     

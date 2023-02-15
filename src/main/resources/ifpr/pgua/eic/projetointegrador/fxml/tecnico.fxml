@@ -61,7 +61,7 @@
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btCadastrar" mnemonicParsing="false" onAction="#criar" text="Cadastrar" textAlignment="CENTER" />
+            <Button fx:id="btCadastrar" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" textAlignment="CENTER" />
             <Button fx:id="btEditar" mnemonicParsing="false" onAction="#atualizar" text="Editar" textAlignment="CENTER">
                <HBox.margin>
                   <Insets left="10.0" />
