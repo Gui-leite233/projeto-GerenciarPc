@@ -7,7 +7,7 @@ import ifpr.pgua.eic.projetointegrador.model.results.Result;
 
 public interface TecnicoDAO {
     Result criar(Tecnico tecnico);
-    Result editar(String cpf);
+    Result editar(String cpf, Tecnico tecnico);
     Result remover(String cpf);
     List<Tecnico> listarTodos();
     Tecnico buscarPorCpfTecnico(String cpf);

@@ -1,6 +1,7 @@
 package ifpr.pgua.eic.projetointegrador.model.daos;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,6 +11,8 @@ import java.util.List;
 import ifpr.pgua.eic.projetointegrador.model.FabricaConexoes;
 import ifpr.pgua.eic.projetointegrador.model.entities.Tecnico;
 import ifpr.pgua.eic.projetointegrador.model.results.Result;
+import javafx.scene.control.DatePicker;
+import java.time.format.DateTimeFormatter;
 
 
 public class JDBCTecnicoDAO implements TecnicoDAO{
@@ -22,6 +25,11 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
 
     @Override
     public Result criar(Tecnico tecnico) {
+
+        DatePicker datepicker;
+        LocalDate data = LocalDate.now();
+
+        
         try{
 
             Connection con = fabricaConexoes.getConnection();
@@ -30,7 +38,7 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
        
             pstm.setString(1, tecnico.getCpf());
             //Descobrir equivalente do setString() para datePicker()!!
-            pstm.setTimestamp(2, Timestamp.valueOf(tecnico.getDataHora()));
+            pstm.setDate(2, Timestamp.valueOf(tecnico.getDataHora()));
             pstm.setString(3, tecnico.getMatricula());
             pstm.setString(4, tecnico.getNome());
 
@@ -107,12 +115,12 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
         // TODO Auto-generated method stub
         return null;
     }
-
-    public Result atualizar(String cpf, Tecnico tecnico) {
+    @Override
+    public Result editar(String cpf, Tecnico tecnico) {
         try{
             Connection con = fabricaConexoes.getConnection();
 
-            PreparedStatement pstm = con.prepareStatement("UPDATE tca_tecnico set cpf=?, data_cadastro_tecnico=?, nome=? WHERE id=?");
+            PreparedStatement pstm = con.prepareStatement("UPDATE tca_tecnico set cpf=?, data_cadastro_tecnico=?, nome=? WHERE matricula=?");
 
             return Result.success("Cliente atualizado com sucesso!");
         }catch(SQLException e){
@@ -122,11 +130,8 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
         //return null;
     }
 
-    @Override
-    public Result editar(String cpf) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    
+    
 
     
 

@@ -6,7 +6,7 @@ package ifpr.pgua.eic.projetointegrador.model.results;
  */
 
 
-public abstract class Result {
+public abstract class Result implements com.mysql.cj.xdevapi.Result {
     private String msg;
 
     public Result(String msg){

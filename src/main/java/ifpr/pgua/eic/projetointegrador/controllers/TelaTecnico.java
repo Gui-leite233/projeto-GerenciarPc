@@ -1,6 +1,7 @@
 package ifpr.pgua.eic.projetointegrador.controllers;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
@@ -8,11 +9,15 @@ import com.mysql.cj.xdevapi.Result;
 
 import ifpr.pgua.eic.projetointegrador.model.entities.Tecnico;
 import ifpr.pgua.eic.projetointegrador.model.repositories.TecnicoRepositorio;
+import ifpr.pgua.eic.projetointegrador.model.results.SuccessResult;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -38,7 +43,7 @@ public class TelaTecnico implements Initializable{
     private TextField tfMatricula;
 
     @FXML
-    private LocalDateTime dpData_cadastro_funcionario;
+    private DatePicker dpData_cadastro_funcionario;
 
     @FXML
     private TableView<Tecnico> tbTecnico;
@@ -54,6 +59,14 @@ public class TelaTecnico implements Initializable{
 
     private Tecnico selecionado = null;
 
+    private TextField tfNumero;
+
+    //String sNumero = tfNumero.getText();
+
+    private Result msg;
+
+    private boolean atualizar = false;
+
     private TecnicoRepositorio repositorio;
 
     public TelaTecnico(TecnicoRepositorio repositorio){
@@ -66,6 +79,7 @@ public class TelaTecnico implements Initializable{
         tbcCpf.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getCpf()));
         tbcMatricula.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getMatricula()));
         tbcNome.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getNome()));
+        dpData_cadastro_funcionario.setValue(LocalDate.now());
 
         atualizar();
         
@@ -86,16 +100,40 @@ public class TelaTecnico implements Initializable{
         Result result = null;
 
         if(atualizar){
-            result = repositorio.atualizar(selecionado.getCpf(),cpf,dcf,Matricula,nome);
+            result = repositorio.editar(Matricula,cpf, selecionado.getDataHora(),nome);
         } else{
-            result = repositorio.cadastrar(nome, cpf, dcf,  Matricula);
+            result = repositorio.cadastrar(nome, cpf, dpData_cadastro_funcionario,  Matricula);
+        }
+
+        //Nao sei o porque de naoa estar reconhecendo o BaseController.java
+        //showMessage(result);
+
+
+        if(result instanceof SuccessResult){
+            limpar();
+            atualizar();
         }
     }
+
+    
+
 
     @FXML
     private void limpar(){
         tfNome.clear();
         tfCpf.clear();
         tfMatricula.clear();
+
+        atualizar = false;
+        
     }
+
+    /*private void atualizarTabela(){
+
+            
+        tbTecnico.getItems().clear();
+        tbTecnico.getItems().addAll(repositorio.mostrarTodos());
+        
+        
+    }*/
 }

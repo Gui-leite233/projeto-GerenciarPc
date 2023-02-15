@@ -1,16 +1,18 @@
 package ifpr.pgua.eic.projetointegrador.model.entities;
 
-import java.time.LocalDateTime;
+
+
+import javafx.scene.control.DatePicker;
 
 
 
 public class Tecnico {
     private String nome;
-    private LocalDateTime dcf;
+    private DatePicker dcf;
     private String cpf;
     private String matricula;
 
-    public Tecnico(String nome, String matricula, LocalDateTime data_cadastro_funcionario, String cpf){
+    public Tecnico(String nome, String matricula, DatePicker data_cadastro_funcionario, String cpf){
         this.nome = nome;
         this.dcf = data_cadastro_funcionario;
         this.cpf = cpf;
@@ -25,11 +27,11 @@ public class Tecnico {
         this.nome = nome;
     }
 
-    public LocalDateTime getDataHora() {
+    public DatePicker getDataHora() {
         return dcf;
     }
 
-    public void setDataHora(LocalDateTime dcf) {
+    public void setDataHora(DatePicker dcf) {
         this.dcf = dcf;
     }
 
