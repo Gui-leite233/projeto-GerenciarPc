@@ -13,6 +13,7 @@ import ifpr.pgua.eic.projetointegrador.controllers.TelaPrincipal;
 import ifpr.pgua.eic.projetointegrador.controllers.TelaTecnico;
 import ifpr.pgua.eic.projetointegrador.model.FabricaConexoes;
 import ifpr.pgua.eic.projetointegrador.model.daos.ComputadorDAO;
+import ifpr.pgua.eic.projetointegrador.model.daos.JDBCComputadorDAO;
 import ifpr.pgua.eic.projetointegrador.model.daos.JDBCTecnicoDAO;
 import ifpr.pgua.eic.projetointegrador.model.daos.SetorDAO;
 import ifpr.pgua.eic.projetointegrador.model.daos.TecnicoDAO;
@@ -45,6 +46,7 @@ public class App extends BaseAppNavigator {
         super.init();
         tecnicoDAO = new JDBCTecnicoDAO(fabricaConexao);
         tecnicoRepositorio = new TecnicoRepositorio(tecnicoDAO);
+        computadorDAO = new JDBCComputadorDAO(fabricaConexao);
         computadorRepositorio = new ComputadorRepositorio(computadorDAO);
         setorRepositorio = new SetorRepositorio(setorDAO);
     }

@@ -1,8 +1,10 @@
 package ifpr.pgua.eic.projetointegrador.model.daos;
 
 import java.sql.*;
+import java.time.LocalDate;
 //import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,11 +29,11 @@ public class JDBCComputadorDAO implements ComputadorDAO{
 
             Connection con = fabricaConexoes.getConnection();
 
-            PreparedStatement ptsm = con.prepareStatement("INSERT INTO tca_computador(patrimonio, data_cadastro, descricao, nome, ip) VALUES(?,?,?,?,?)");
+            PreparedStatement ptsm = con.prepareStatement("INSERT INTO tca_computador(patrimonio, data_cadastro, observacao, nome, ip) VALUES(?,?,?,?,?)");
 
             ptsm.setString(1, computador.getPatrimonio());
-            ptsm.setTimestamp(2, Timestamp.valueOf(computador.getDataCadastro()));
-            ptsm.setString(3, computador.getDescricao());
+            ptsm.setTimestamp(2, Timestamp.valueOf( LocalDateTime.of(computador.getDataCadastro(),LocalTime.of(0, 0))));
+            ptsm.setString(3, computador.getObservacao());
             ptsm.setString(4, computador.getNome());
             ptsm.setString(5, computador.getIp());
             
@@ -57,8 +59,8 @@ public class JDBCComputadorDAO implements ComputadorDAO{
     public List<Computador> listarTodos(){
         
         ArrayList<Computador> computadores = new ArrayList<>();
-        LocalDateTime now = LocalDateTime.now();
-        Timestamp timestamp = Timestamp.valueOf(now);
+        LocalDate now = LocalDate.now();
+        
         try{
 
             Connection con = fabricaConexoes.getConnection();
@@ -68,11 +70,11 @@ public class JDBCComputadorDAO implements ComputadorDAO{
             ResultSet rs = pstm.executeQuery();
 
             while(rs.next()){
-                String ip = rs.getString("Ip");
-                LocalDateTime dataCadastro = timestamp.toLocalDateTime();
-                String observacao = rs.getString("Matricula");
-                String patrimonio = rs.getString("Patrimonio");
-                String nome = rs.getString("Nome");
+                String ip = rs.getString("ip");
+                LocalDate dataCadastro = rs.getTimestamp("data_cadastro").toLocalDateTime().toLocalDate();
+                String observacao = rs.getString("observacao");
+                String patrimonio = rs.getString("patrimonio");
+                String nome = rs.getString("nome");
 
                 
                 Computador computador = new Computador(patrimonio, nome, ip, observacao, dataCadastro);
@@ -104,8 +106,8 @@ public class JDBCComputadorDAO implements ComputadorDAO{
             ptsm.setString(1, novoComputador.getNome());
             ptsm.setString(2, novoComputador.getIp());
             ptsm.setString(3, novoComputador.getPatrimonio());
-            ptsm.setTimestamp(4, Timestamp.valueOf(novoComputador.getDataCadastro()));
-            ptsm.setString(5, novoComputador.getDescricao());
+            ptsm.setDate(2, Date.valueOf(novoComputador.getDataCadastro()));
+            ptsm.setString(5, novoComputador.getObservacao());
             
 
             ptsm.execute();

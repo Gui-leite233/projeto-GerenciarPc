@@ -41,9 +41,15 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Text>
-            <TextField fx:id="tfPatrimonio" layoutX="117.0" layoutY="150.0" prefHeight="25.0" prefWidth="208.0" promptText="Digite o Patrimônio do computador" />
+            <TextField fx:id="tfPatrimonio" layoutX="111.0" layoutY="151.0" prefHeight="25.0" prefWidth="208.0" promptText="Digite o Patrimônio do computador" />
             <Text layoutX="435.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data M.T.C:" />
             <DatePicker fx:id="dpDataMT" layoutX="505.0" layoutY="63.0" prefHeight="25.0" prefWidth="246.0" promptText="Coloque a data da ultima manutenção" />
+            <Text layoutX="419.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descriçao:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Text>
+            <TextField fx:id="tfObservacao" layoutX="505.0" layoutY="158.0" prefHeight="25.0" prefWidth="208.0" promptText="digite uma descrição breve" />
          </children>
       </Pane>
    </top>
@@ -53,6 +59,7 @@
             <TableColumn fx:id="tbcNome" prefWidth="124.0" text="Nome" />
             <TableColumn fx:id="tbcIp" prefWidth="163.0" text="IP" />
             <TableColumn fx:id="tbcPatrimonio" prefWidth="210.0" text="Patrimônio" />
+            <TableColumn fx:id="tbcDataMTC" prefWidth="119.0" text="Data" />
          </columns>
       </TableView>
    </bottom>

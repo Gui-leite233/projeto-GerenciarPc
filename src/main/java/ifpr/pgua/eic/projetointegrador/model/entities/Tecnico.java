@@ -2,21 +2,22 @@ package ifpr.pgua.eic.projetointegrador.model.entities;
 
 
 
-import javafx.scene.control.DatePicker;
+import java.time.LocalDate;
+
 
 
 
 public class Tecnico {
     private String nome;
-    private DatePicker dcf;
+    private LocalDate dcf;
     private String cpf;
-    private String matricula;
+    //private String matricula;
 
-    public Tecnico(String nome, String matricula, DatePicker data_cadastro_funcionario, String cpf){
+    public Tecnico(String nome, LocalDate data_cadastro_funcionario, String cpf){
         this.nome = nome;
         this.dcf = data_cadastro_funcionario;
         this.cpf = cpf;
-        this.matricula = matricula;
+        //this.matricula = matricula;
     }
 
     public String getNome() {
@@ -27,11 +28,11 @@ public class Tecnico {
         this.nome = nome;
     }
 
-    public DatePicker getDataHora() {
+    public LocalDate getDataHora() {
         return dcf;
     }
 
-    public void setDataHora(DatePicker dcf) {
+    public void setDataHora(LocalDate dcf) {
         this.dcf = dcf;
     }
 
@@ -43,13 +44,7 @@ public class Tecnico {
         this.cpf = cpf;
     }
 
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
+    
 
 
     

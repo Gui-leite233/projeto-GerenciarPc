@@ -3,8 +3,10 @@ package ifpr.pgua.eic.projetointegrador.controllers;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+import com.google.protobuf.Message;
 import com.mysql.cj.xdevapi.Result;
 
 import ifpr.pgua.eic.projetointegrador.model.entities.Tecnico;
@@ -21,7 +23,7 @@ import javafx.scene.control.Labeled;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+//import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TelaTecnico implements Initializable{
     @FXML
@@ -40,46 +42,50 @@ public class TelaTecnico implements Initializable{
     private TextField tfCpf;
 
     @FXML
-    private TextField tfMatricula;
+    private TableColumn<Tecnico ,LocalDate> dataCad;
 
-    @FXML
-    private DatePicker dpData_cadastro_funcionario;
-
+    
     @FXML
     private TableView<Tecnico> tbTecnico;
+
+    @FXML
+    private DatePicker dpDcf;
 
     @FXML
     private TableColumn<Tecnico, String> tbcCpf;
 
     @FXML
-    private TableColumn<Tecnico, String> tbcMatricula;
+    private TableColumn<Tecnico, String> tbcData;
 
     @FXML
     private TableColumn<Tecnico, String> tbcNome;
 
     private Tecnico selecionado = null;
 
-    private TextField tfNumero;
+    //private TextField tfNumero;
 
     //String sNumero = tfNumero.getText();
 
-    private Result msg;
+    private String msg;
 
     private boolean atualizar = false;
 
     private TecnicoRepositorio repositorio;
+    
 
     public TelaTecnico(TecnicoRepositorio repositorio){
         this.repositorio = repositorio;
+        dpDcf = new DatePicker(LocalDate.now());
     }
 
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         tbcCpf.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getCpf()));
-        tbcMatricula.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getMatricula()));
+        //tbcMatricula.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getMatricula()));
         tbcNome.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getNome()));
-        dpData_cadastro_funcionario.setValue(LocalDate.now());
+        tbcData.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getDataHora().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
+        dpDcf.setValue(LocalDate.now());
 
         atualizar();
         
@@ -89,31 +95,39 @@ public class TelaTecnico implements Initializable{
     private void atualizar() {
         tbTecnico.getItems().clear();
         tbTecnico.getItems().addAll(repositorio.mostrarTodos());
+        
     }
 
     @FXML
     private void cadastrar(){
         String nome = tfNome.getText();
         String cpf = tfCpf.getText();
-        String Matricula = tfMatricula.getText();
-
+        //String matricula = tfMatricula.getText();
+        LocalDate data = dpDcf.getValue();
         Result result = null;
 
         if(atualizar){
-            result = repositorio.editar(Matricula,cpf, selecionado.getDataHora(),nome);
+            result = repositorio.editar(cpf, selecionado.getDataHora(),nome);
+            msg = "Atualizado!!";
         } else{
-            result = repositorio.cadastrar(nome, cpf, dpData_cadastro_funcionario,  Matricula);
+            result = repositorio.cadastrar(nome, data, cpf);
+            msg = "Cadastrado!!";
         }
 
-        //Nao sei o porque de naoa estar reconhecendo o BaseController.java
-        //showMessage(result);
+        
 
 
         if(result instanceof SuccessResult){
             limpar();
             atualizar();
         }
+
+        Alert alert = new Alert(AlertType.INFORMATION,msg);
+        alert.showAndWait();
     }
+
+    
+
 
     
 
@@ -122,7 +136,7 @@ public class TelaTecnico implements Initializable{
     private void limpar(){
         tfNome.clear();
         tfCpf.clear();
-        tfMatricula.clear();
+        //tfMatricula.clear();
 
         atualizar = false;
         

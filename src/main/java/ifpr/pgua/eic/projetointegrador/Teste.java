@@ -1,5 +1,6 @@
 package ifpr.pgua.eic.projetointegrador;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import ifpr.pgua.eic.projetointegrador.model.FabricaConexoes;
@@ -14,7 +15,7 @@ public class Teste {
         
         TecnicoDAO dao = new JDBCTecnicoDAO(FabricaConexoes.getInstance());
 
-        Tecnico tecnico = new Tecnico("Zé", "12345", LocalDateTime.now(), "9870123");
+        Tecnico tecnico = new Tecnico("Zé", LocalDate.now(), "9870123");
 
         dao.criar(tecnico);
 

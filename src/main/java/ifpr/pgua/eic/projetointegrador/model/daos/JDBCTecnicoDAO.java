@@ -26,21 +26,20 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
     @Override
     public Result criar(Tecnico tecnico) {
 
-        DatePicker datepicker;
-        LocalDate data = LocalDate.now();
+        
 
         
         try{
 
             Connection con = fabricaConexoes.getConnection();
 
-            PreparedStatement pstm = con.prepareStatement("INSERT INTO tca_tecnico(cpf, data_cadastro_funcionario, matricula, nome) VALUES (?,?,?,?)");
+            PreparedStatement pstm = con.prepareStatement("INSERT INTO tca_tecnico(cpf, data_cadastro_funcionario, nome) VALUES (?,?,?)");
        
             pstm.setString(1, tecnico.getCpf());
             //Descobrir equivalente do setString() para datePicker()!!
-            pstm.setDate(2, Timestamp.valueOf(tecnico.getDataHora()));
-            pstm.setString(3, tecnico.getMatricula());
-            pstm.setString(4, tecnico.getNome());
+            pstm.setDate(2, Date.valueOf(tecnico.getDataHora()));
+            //pstm.setString(3, tecnico.getMatricula());
+            pstm.setString(3, tecnico.getNome());
 
             pstm.executeUpdate();
 
@@ -68,8 +67,8 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
     public List<Tecnico> listarTodos() {
         
         ArrayList<Tecnico> tecnicos = new ArrayList<>();
-        LocalDateTime now = LocalDateTime.now();
-        Timestamp timestamp = Timestamp.valueOf(now);
+        
+        
         try{
 
             Connection con = fabricaConexoes.getConnection();
@@ -80,27 +79,25 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
 
             while(rs.next()){
                 String cpf = rs.getString("cpf");
-                LocalDateTime dcf = timestamp.toLocalDateTime();
-                String matricula = rs.getString("Matricula");
+                LocalDate dcf = rs.getDate("data_cadastro_funcionario").toLocalDate();
+                //String matricula = rs.getString("matricula");
                 String nome = rs.getString("nome");
 
                 
-                Tecnico tecnico = new Tecnico(cpf, matricula, dcf, nome);
+                Tecnico tecnico = new Tecnico(nome, dcf, cpf);
 
                 tecnicos.add(tecnico);
             }
             rs.close();
             pstm.close();
             con.close();
-            
+            return tecnicos;
 
         }catch(SQLException e){
             System.out.println(e.getMessage());
             return Collections.emptyList();
         }
 
-        //List tecnico;
-        return Collections.unmodifiableList(tecnicos);
 
     }
 

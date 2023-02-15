@@ -1,13 +1,19 @@
 package ifpr.pgua.eic.projetointegrador.controllers;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import ifpr.pgua.eic.projetointegrador.model.entities.Computador;
 import ifpr.pgua.eic.projetointegrador.model.repositories.ComputadorRepositorio;
+import ifpr.pgua.eic.projetointegrador.model.results.Result;
+import ifpr.pgua.eic.projetointegrador.model.results.SuccessResult;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
@@ -35,7 +41,8 @@ public class TelaComputador extends BaseController implements Initializable{
     @FXML
     private TextField tfPatrimonio;
 
-    
+    @FXML
+    private TextField tfObservacao;
 
     @FXML
     private DatePicker dpDataMT;
@@ -54,6 +61,10 @@ public class TelaComputador extends BaseController implements Initializable{
 
     
 
+    private boolean atualizar = false;
+
+    private String msg;
+
     @FXML
     private TableColumn<Computador, String> tbcDataMTC;
 
@@ -62,6 +73,7 @@ public class TelaComputador extends BaseController implements Initializable{
 
     public TelaComputador(ComputadorRepositorio repositorio){
         this.repositorio = repositorio;
+        dpDataMT = new DatePicker(LocalDate.now());
     }
 
 
@@ -72,8 +84,8 @@ public class TelaComputador extends BaseController implements Initializable{
         tbcPatrimonio.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getPatrimonio()));
         tbcNome.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getNome()));
         //tbcMatricula.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getNome()));
-        //tbcDataMTC.setCellFactory(cell -> new SimpleStringProperty(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").format(cell.getValue().getDataHora())));
-
+        tbcDataMTC.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getDataCadastro().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
+        dpDataMT.setValue(LocalDate.now());
         atualizarTabela();
         
     }
@@ -87,9 +99,29 @@ public class TelaComputador extends BaseController implements Initializable{
     @FXML
     private void adicionar(){
         String nome = tfNome.getText();
-        String Ip = tfIp.getText();
-        String Patrimonio = tfPatrimonio.getText();
+        String ip = tfIp.getText();
+        String patrimonio = tfPatrimonio.getText();
+        String observacao = tfObservacao.getText();
+        LocalDate data = dpDataMT.getValue();
+        Result result = null;
+
+       
+        if(atualizar){
+            result = repositorio.editar(patrimonio, nome, ip, observacao, data);
+            msg = "Atualizado!!";
+        } else{
+            result = repositorio.cadastrar(patrimonio, nome, ip, observacao, data);
+            msg = "Cadastrado!!";
+        }
         //String Matricula = tfMatricula.getText();
+
+        if(result instanceof SuccessResult){
+            Limpar();
+            atualizarTabela();
+        }
+
+        Alert alert = new Alert(AlertType.INFORMATION,msg);
+        alert.showAndWait();
 
     }
 
@@ -98,6 +130,7 @@ public class TelaComputador extends BaseController implements Initializable{
         tfNome.clear();
         tfIp.clear();
         tfPatrimonio.clear();
+        tfObservacao.clear();
         //tfMatricula.clear();
     }
 
