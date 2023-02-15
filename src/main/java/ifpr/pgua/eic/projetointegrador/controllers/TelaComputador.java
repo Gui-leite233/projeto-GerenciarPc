@@ -65,9 +65,9 @@ public class TelaComputador extends BaseController implements Initializable{
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         tbcIp.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getIp()+""));
-        tbcPatrimonio.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getComputador().getNome()));
-        tbcNome.setCellValueFactory(cell -> new PropertyValueFactory<>("Nome"));
-        tbcDataMTC.setCellFactory(cell -> new SimpleStringProperty(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").format(cell.getValue().getDataHora())));
+        tbcPatrimonio.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getPatrimonio()));
+        tbcNome.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getNome()));
+        //tbcDataMTC.setCellFactory(cell -> new SimpleStringProperty(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").format(cell.getValue().getDataHora())));
 
         atualizarTabela();
         

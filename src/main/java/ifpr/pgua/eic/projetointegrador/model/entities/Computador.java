@@ -1,5 +1,7 @@
 package ifpr.pgua.eic.projetointegrador.model.entities;
 
+import java.time.LocalDateTime;
+
 import javafx.scene.control.DatePicker;
 
 public class Computador {
@@ -7,13 +9,14 @@ public class Computador {
     private String nome;
     private String ip;
     private String descricao;
-    private DatePicker dataCadastro;
+    private LocalDateTime dataCadastro;
+    //private Manutencao mtc;
     //private String ValorMTC;
 
 
 
 
-    public Computador(String patrimonio, String nome, String ip, String observacao) {
+    public Computador(String patrimonio, String nome, String ip, String observacao, LocalDateTime dataCadastro) {
         this.patrimonio = patrimonio;
         this.nome = nome;
         this.ip = ip;
@@ -54,11 +57,11 @@ public class Computador {
         this.descricao = descricao;
     }
 
-    public DatePicker setDataCadastro(){
+    public LocalDateTime getDataCadastro(){
         return dataCadastro;
     }
 
-    public void setDataCadastro(DatePicker dataCadastro){
+    public void setDataCadastro(LocalDateTime dataCadastro){
         this.dataCadastro = dataCadastro;
     }
     

@@ -1,5 +1,6 @@
 package ifpr.pgua.eic.projetointegrador.model.repositories;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import ifpr.pgua.eic.projetointegrador.model.daos.ComputadorDAO;
@@ -14,7 +15,7 @@ public class ComputadorRepositorio {
         this.dao = dao;
     }
 
-    public Result cadastrar(String nome, String patrimonio, String ip, String valorMTC){
+    public Result cadastrar(String patrimonio, String nome, String ip, String observacao, LocalDateTime dataCadastro){
         if(patrimonio.isEmpty() || patrimonio.isBlank() ){
             return Result.fail("Valor do Patrimonio invalido!");
         }
@@ -23,7 +24,7 @@ public class ComputadorRepositorio {
             return Result.fail("Valor invalido!");
         }
 
-        Computador computadores = new Computador(nome, patrimonio, ip, valorMTC);
+        Computador computadores = new Computador(patrimonio, nome, ip, observacao, dataCadastro);
 
         return dao.criar(computadores);
     }

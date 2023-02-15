@@ -33,7 +33,6 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
             pstm.setTimestamp(2, Timestamp.valueOf(tecnico.getDataHora()));
             pstm.setString(3, tecnico.getMatricula());
             pstm.setString(4, tecnico.getNome());
-            
 
             pstm.executeUpdate();
 
@@ -128,6 +127,8 @@ public class JDBCTecnicoDAO implements TecnicoDAO{
         // TODO Auto-generated method stub
         return null;
     }
+
+    
 
     
     
