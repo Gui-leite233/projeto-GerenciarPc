@@ -11,7 +11,6 @@ import ifpr.pgua.eic.projetointegrador.model.results.Result;
 
 
 public class TecnicoRepositorio {
-    private List<Tecnico> tecnicos;
     private TecnicoDAO dao;
 
     public TecnicoRepositorio(TecnicoDAO dao){
