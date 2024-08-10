@@ -80,7 +80,7 @@ public class TelaComputador extends BaseController implements Initializable{
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        tbcIp.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getIp()+""));
+        tbcIp.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getIp()));
         tbcPatrimonio.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getPatrimonio()));
         tbcNome.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getNome()));
         //tbcMatricula.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getNome()));

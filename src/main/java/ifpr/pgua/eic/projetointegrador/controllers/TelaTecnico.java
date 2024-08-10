@@ -95,7 +95,6 @@ public class TelaTecnico implements Initializable{
     private void atualizar() {
         tbTecnico.getItems().clear();
         tbTecnico.getItems().addAll(repositorio.mostrarTodos());
-        
     }
 
     @FXML
@@ -113,9 +112,6 @@ public class TelaTecnico implements Initializable{
             result = repositorio.cadastrar(nome, data, cpf);
             msg = "Cadastrado!!";
         }
-
-        
-
 
         if(result instanceof SuccessResult){
             limpar();
