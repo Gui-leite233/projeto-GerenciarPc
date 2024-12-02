@@ -8,23 +8,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ifpr.pgua.eic.projetointegrador.controllers.TelaPrincipal">
-
-   <left>
-      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="155.0" spacing="10.0">
-         <Pane prefHeight="78.0" prefWidth="135.0">
-            <children>
-               <Label layoutX="14.0" layoutY="27.0" text="Vendinha">
-                  <font>
-                     <Font name="System Bold" size="20.0" />
-                  </font>
-               </Label>
-            </children>
-         </Pane>
-         <Button prefHeight="40.0" prefWidth="100.0" text="Clientes" />
-         <Button prefHeight="40.0" prefWidth="100.0" text="Produtos" />
-         <Button prefHeight="40.0" prefWidth="100.0" text="Vendas" />
-         <Button prefHeight="40.0" prefWidth="100.0" text="Nova Venda" />
+<BorderPane prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ifpr.pgua.eic.projetointegrador.controllers.TelaPrincipal">
+   <top>
+      <Pane prefHeight="78.0" prefWidth="762.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="312.0" layoutY="17.0" text="Tela Principal">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <VBox alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+         <Button onAction="#carregarComputador" prefHeight="40.0" prefWidth="100.0" text="Computador" />
+         <Button onAction="#carregarTecnico" prefHeight="40.0" prefWidth="100.0" text="Tecnico" />
+         <Button prefHeight="40.0" prefWidth="100.0" text="Manutenção" />
+         <Button prefHeight="40.0" prefWidth="119.0" text="Nova Manutenção" />
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
@@ -32,9 +33,6 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
-   </left>
-   <center>
-
    </center>
 
 </BorderPane>
